@@ -1,32 +1,29 @@
 import express from 'express';
 import Routes from './src/Routes/MyRoutes.js';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
 
 const app = express();
 
-Routes(app);
+// Middleware to parse JSON request bodies
+app.use(express.json());
 
-//mongodb connection
-
-mongoose.Promise= global.Promise;
+// Connect to MongoDB
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/mydatabase', {
   useNewUrlParser: true,
-}).then(()=> console.log('connected to mongodb')).catch((error)=>console.error("Failed to connect:", error));
+}).then(() => console.log('Connected to MongoDB'))
+  .catch(error => console.error('Failed to connect to MongoDB:', error));
 
-//setting bodyparser for incoming req
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Routes
+Routes(app);
 
-
-app.use((req, res, next) => {
-    res.status(200).json({
-        message: 'It works!'
-    })
+// Default route handler
+app.use((req, res) => {
+  res.status(404).send('Page not found');
 });
 
-const port = process.env.PORT || 3000;  
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
