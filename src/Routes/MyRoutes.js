@@ -1,4 +1,4 @@
-import { addNewProduct , getProducts } from "../Controllers/MyController.js";
+import { addNewProduct , getProducts, getProductsByID, updateProduct, deleteProduct } from "../Controllers/MyController.js";
 
 const Routes= (app) =>{
 
@@ -7,16 +7,15 @@ const Routes= (app) =>{
         console.log(`Request from: ${req.originalUrl}`)
         next();
     }, getProducts)
-    .post(addNewProduct);
-
+    .post(addNewProduct)
+    .put(updateProduct)
+    .delete(deleteProduct)
+   
     app.route('/products/:productId')
-
-    .put((req, res)=>{
-        res.send("Put request is successfull");
-    })
-    .delete((req, res)=>{
-        res.send("Delete request is successfull");
-    })
+    .get(getProductsByID)
+    .put(updateProduct)
+    .delete(deleteProduct)
 
 }
+
 export default Routes;
