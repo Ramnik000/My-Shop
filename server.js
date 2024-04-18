@@ -1,8 +1,12 @@
 import express from 'express';
+import cors from 'cors';
 import Routes from './src/Routes/MyRoutes.js';
 import mongoose from 'mongoose';
 
+
 const app = express();
+//Middleware for cors
+app.use(cors());
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
@@ -15,7 +19,7 @@ mongoose.connect('mongodb://localhost:27017/mydatabase', {
   .catch(error => console.error('Failed to connect to MongoDB:', error));
 
 // Routes
-Routes(app);
+app.use('/products', Routes);
 
 // Default route handler
 app.use((req, res) => {

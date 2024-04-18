@@ -1,21 +1,15 @@
-import { addNewProduct , getProducts, getProductsByID, updateProduct, deleteProduct } from "../Controllers/MyController.js";
+import { Router } from 'express'; 
+import { addNewProduct, getProducts, getProductsByID, updateProduct, deleteProduct } from "../Controllers/MyController.js";
 
-const Routes= (app) =>{
+const router = Router(); 
 
-    app.route('/products')
-    .get((req, res , next)=>{
-        console.log(`Request from: ${req.originalUrl}`)
-        next();
-    }, getProducts)
-    .post(addNewProduct)
-    .put(updateProduct)
-    .delete(deleteProduct)
-   
-    app.route('/products/:productId')
+router.route('/')
+    .get(getProducts)
+    .post(addNewProduct);
+
+router.route('/:productId')
     .get(getProductsByID)
     .put(updateProduct)
-    .delete(deleteProduct)
+    .delete(deleteProduct);
 
-}
-
-export default Routes;
+export default router; 
