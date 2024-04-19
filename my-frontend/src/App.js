@@ -1,12 +1,18 @@
 import React from 'react';
-import ProductList from './ProductList.js';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import ProductList from './Components/ProductList.js';
+import HomePage from './Components/HomePage.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
     return (
-        <div>
-            <h1>My Shop</h1>
-            <ProductList />
-        </div>
+       <Router>
+            <Routes>
+                <Route path="/" element={<HomePage/>} />
+                <Route path="/products" element={<ProductList/>}/>
+            </Routes>
+       </Router>        
     );
 }
 
