@@ -18,6 +18,10 @@ const ProductSchema = new Schema({
     category: {
         type: String,
         required: true
+    },
+    imageUrl: {
+        type: String, 
+        required: true 
     }
 });
 
