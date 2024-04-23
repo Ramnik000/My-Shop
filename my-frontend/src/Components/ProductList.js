@@ -21,6 +21,16 @@ function ProductList() {
         fetchProducts();
     }, []);
 
+    const handleDelete = async (productId) => {
+        try {
+            await axios.delete(`http://localhost:3000/products/${productId}`);
+            setProducts(products.filter(product => product._id !== productId));
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            setError(error);
+        }
+    };
+
     return (
         <div className="container-fluid">
             <div className="row">
@@ -28,18 +38,14 @@ function ProductList() {
                     <div className="sidebar-sticky">
                     <h1 className="mt-4 mb-4">Products</h1>
                         <ul className="nav flex-column">
-                            <li className="nav-item">
-                                <a className="nav-link active" href="#">Product List</a>
-                            </li>
+                            
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Add Product</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Update Product</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Delete Product</a>
-                            </li>
+
                         </ul>
                         <form className="mt-4">
                             <input type="text" className="form-control" placeholder="Search..." />
@@ -57,7 +63,8 @@ function ProductList() {
                                         <h5 className="card-title">Product: {product.name}</h5>
                                         <p className="card-text">Description: {product.description}</p>
                                         <p className="card-text">Price: ${product.price}</p>
-                                        <p className="card-text">Category: {product.category}</p>
+                                        <p className="card-text">Category: ${product.category}</p>
+                                        <button className="btn btn-danger" onClick={() => handleDelete(product._id)}>Delete</button>
                                     </div>
                                 </div>
                             </div>
