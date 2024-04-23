@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 function ProductList() {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -40,16 +43,13 @@ function ProductList() {
                         <ul className="nav flex-column">
                             
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Add Product</a>
+                            <p className="text-center mt-3"> <span onClick={() => navigate('/add')}>Add Products</span></p>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Update Product</a>
+                            <p className="text-center mt-3"> <span onClick={() => navigate('/update')}>Update Products</span></p>
                             </li>
 
                         </ul>
-                        <form className="mt-4">
-                            <input type="text" className="form-control" placeholder="Search..." />
-                        </form>
                     </div>
                 </nav>
                 <main role="main" className="col-md-10 ml-sm-auto col-lg-10 px-4">
@@ -63,7 +63,7 @@ function ProductList() {
                                         <h5 className="card-title">Product: {product.name}</h5>
                                         <p className="card-text">Description: {product.description}</p>
                                         <p className="card-text">Price: ${product.price}</p>
-                                        <p className="card-text">Category: ${product.category}</p>
+                                        <p className="card-text">Category: {product.category}</p>
                                         <button className="btn btn-danger" onClick={() => handleDelete(product._id)}>Delete</button>
                                     </div>
                                 </div>

@@ -17,21 +17,64 @@
   text-align: center;
 }
 /* ProductList.css */
-body {
+.container-fluid {
   background-image: url('img/bg.png'); 
   background-size: cover;
+  padding: 0px; /* Specify units (px) */
+  margin: 0px; /* Specify units (px) */
 }
-/* Sidebar Styles */
-.sidebar {
-  position: relative;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  padding: 48px 0 0;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-}
+
+
 .card-img-top {
   height: 300px; /* Set a fixed height for the images */
   object-fit: cover; /* Ensure images maintain aspect ratio and cover the entire space */
   object-position: center; /* Center the images within the card */
+}
+.container{
+  background-color: aliceblue;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.form-container {
+  padding: 20px;
+  margin: 50px auto; 
+  max-width: 450px; 
+  max-height: 450px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
 }
